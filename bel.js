@@ -26,18 +26,17 @@ function controles ()
 		desenhar_canvas();
 	};
 
-	document.getElementById('loja-select').onchange = () => { f_atualizar(); }
-	document.getElementById('chamado').onchange = () => { f_atualizar(); }
-	document.getElementById('desc').onchange = () => { f_atualizar(); }
-	document.getElementById('pessoa').onchange = () => { f_atualizar(); }
-	document.getElementById('imp').onclick = () => { imprimir(); }
-	document.getElementById('adi').onclick = () => { adicionar_item(); }
+	document.getElementById('loja-select').onchange = () => { f_atualizar(); };
+	document.getElementById('chamado').onchange = () => { f_atualizar(); };
+	document.getElementById('desc').onchange = () => { f_atualizar(); };
+	document.getElementById('pessoa').onchange = () => { f_atualizar(); };
+	document.getElementById('imp').onclick = () => { imprimir(); };
+	document.getElementById('adi').onclick = () => { adicionar_item(); };
 }
 
 function opcao_loja ()
 {
 	const sele = document.getElementById("loja-select");
-	//console.log(sele.selectedIndex);
 	return lojas[sele.selectedIndex];
 }
 
@@ -45,7 +44,7 @@ function definir_lojas ()
 {
 	lojas = new Array(
 		new Loja("Maracanaú", "01"),
-		new Loja("Varjota", "03"),
+		new Loja("Varjota",	"03"),
 		new Loja("Monte Castelo", "04"),
 		new Loja("Aracati", "05"),
 		new Loja("Cocó", "06"),
@@ -65,10 +64,10 @@ function definir_lojas ()
 	);
 }
 
-function Loja (_nome, _num) {
+function Loja (nome, numero) {
 
-	var numero = _num;
-	var nome = _nome;
+	var numero = numero;
+	var nome = nome;
 
 	this.pegarNumero = () => {
 		return numero;

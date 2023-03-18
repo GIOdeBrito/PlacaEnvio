@@ -5,16 +5,13 @@ function desenhar_canvas ()
 	var ctx = c.getContext("2d");
 
 	//var link = "https://upload.wikimedia.org/wikipedia/pt/5/57/Doom_cover_art.jpg";
-	var link = "./recursos/modelo.png";
+	const link = "https://raw.githubusercontent.com/GIOdeBrito/PlacaEnvio/main/recursos/modelo.png";
 	var dados = opcao_loja();
-
-	var chamado = document.getElementById("chamado");
-	var desc = document.getElementById("desc");
-	var pessoa = document.getElementById("pessoa");
 
 	var t = definir_vetor_texto(dados);
 
 	var img = new Image();
+	img.crossOrigin = "anonymous";
 	img.src = link;
 	img.onload = () => {
 
@@ -25,19 +22,23 @@ function desenhar_canvas ()
 			ctx.font = item.fonte;
 			ctx.textAlign = item.alinhamento;
 
-			ctx.fillText(item.texto, item.Posicao().x, item.Posicao().y);
+			ctx.fillText(item.texto, item.Posicao().x,item.Posicao().y);
 		});
 	};
 }
 
 function definir_vetor_texto (dados)
 {
-	var t = new Array();
+	var chamado = document.getElementById("chamado");
+	var desc = document.getElementById("desc");
+	var pessoa = document.getElementById("pessoa");
 	const cLargura = document.getElementById("canvas").width / 2;
 
-	t.push(new Texto(`PARA: ${dados.pegarNome()}`, new Vetor2(160,280)));
-	t.push(new Texto(`${dados.pegarNumero()}`, new Vetor2(1850,280)));
-	t.push(new Texto(`#${chamado.value}`, new Vetor2(160,405), "left", "62"));
+	var t = new Array(
+		new Texto(`PARA: ${dados.pegarNome()}`, new Vetor2(160,280)),
+		new Texto(`${dados.pegarNumero()}`, new Vetor2(1850,280)),
+		new Texto(`#${chamado.value}`, new Vetor2(160,405), "left", "70"),
+	);
 
 	var quebrasl = picotar_str(desc.value);
 	var posY = 0;
