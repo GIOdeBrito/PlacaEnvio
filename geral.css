@@ -1,0 +1,148 @@
+
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0 auto;
+
+	overflow: hidden !important;
+}
+
+/*
+================================================================================
+	TELA
+================================================================================
+*/
+
+.centro {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	display: block;
+}
+
+.janela_0 {
+	width: 95%;
+	height: 90%;
+
+	box-shadow: 0px 0px 20px #000;
+	background-color: #fff;
+	border-radius: 20px;
+
+	margin: 0 auto;
+	position: relative;
+	top: 5%;
+}
+
+.janela_1 {
+	width: 90%;
+	height: 100%;
+	margin: 20px;
+	margin: 0 auto;
+}
+
+.lista_dados {
+	width: 50%;
+	height: 50%;
+	margin-top: 5%;
+	position: absolute;
+	text-align: left;
+	margin-left: 50px;
+	/*! margin-top: 0 auto; */
+
+	list-style-type: none;
+}
+.lista_dados li {
+	margin: 6px;
+}
+
+/*
+================================================================================
+	ESTILO ELEMENTOS
+================================================================================
+*/
+
+.caixa {
+	background-color: #1d5482;
+	color: white;
+	border: azure;
+	border-radius: 8px;
+}
+
+.caixa_texto {
+	background-color: white;
+	border: #1d5482;
+	border-style: solid;
+
+	border-radius: 5px;
+
+	width: 170px;
+	height: 25px;
+}
+
+.botao {
+	width: 180px;
+	height: 30px;
+	transition: all 0.7s;
+}
+.botao:hover {
+	background-color: #122e45;
+	cursor: pointer;
+}
+
+.selecao {
+	text-align: center;
+	width: 180px;
+	height: 30px;
+}
+
+/*
+================================================================================
+	ELEMENTOS
+================================================================================
+*/
+
+#canvas {
+	width: 60%;
+	height: 68%;
+
+	margin-top: 5%;
+	float: right;
+
+	border-style: solid;
+	box-shadow: 0px 0px 10px #000;
+}
+
+/*
+================================================================================
+	IMPRIMIR
+================================================================================
+*/
+
+@media print {
+	body>.centro>.janela_0>.janela_1>canvas {
+		visibility: visible;
+	}
+	
+	#canvas {
+		width: 100%;
+		height: 100%;
+		float: none;
+		border-style: hidden;
+		box-shadow: none;
+	}
+	
+	body {
+		visibility: collapse;
+	}
+	
+	.janela_0,.janela_1 {
+		width: 100%;
+		width: 100%;
+		top: 0%;
+	}
+
+	.lista_dados {
+		display: none;
+	}
+}
