@@ -6,7 +6,7 @@ window.onload = () => {
 	definir_lojas();
 	controles();
 	desenhar_canvas();
-}
+};
 
 function controles ()
 {
@@ -32,6 +32,7 @@ function controles ()
 	document.getElementById('pessoa').onchange = () => { f_atualizar(); };
 	document.getElementById('imp').onclick = () => { imprimir(); };
 	document.getElementById('adi').onclick = () => { adicionar_item(); };
+	document.getElementById('salvar').onclick = () => { salvar_imagem(); };
 }
 
 function opcao_loja ()

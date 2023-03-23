@@ -1,5 +1,11 @@
 
-async function imprimir ()
+/*
+================================================================================
+	RELACIONADO À IMAGEM DA TELA
+================================================================================
+*/
+
+function imprimir ()
 {
 	const c = document.getElementById("canvas");
 	const dataUrl = c.toDataURL("png");
@@ -10,10 +16,33 @@ async function imprimir ()
 	const j = window.open("imagem", '_blank');
 	j.document.write(imagem.outerHTML);
 
-	j.focus();
-	j.print();
-	j.close();
+	setTimeout(() => {
+
+		j.focus();
+		j.print();
+		j.close();
+	}, 250);
 }
+
+function salvar_imagem ()
+{
+	const c = document.getElementById("canvas");
+	const dataUrl = c.toDataURL("png");
+	const link = document.createElement("a");
+	const l = opcao_loja();
+
+	link.download = `${l.pegarNome().toLowerCase()}.png`;
+	link.href = c.toDataURL();
+	link.click();
+
+	link.remove();
+}
+
+/*
+================================================================================
+	MODIFICAÇÃO DE DADOS
+================================================================================
+*/
 
 function data_formatada ()
 {
@@ -33,11 +62,6 @@ function picotar_str (str = String(""))
 	return arr;
 }
 
-function adicionar_item ()
-{
-	document.getElementById("desc").value += "\n01 - ";
-}
-
 function formatar_numero (n = Number(0))
 {
 	if(n > 9)
@@ -46,4 +70,15 @@ function formatar_numero (n = Number(0))
 	}
 
 	return '0' + n;
+}
+
+/*
+================================================================================
+	OUTROS
+================================================================================
+*/
+
+function adicionar_item ()
+{
+	document.getElementById("desc").value += "\n01 - ";
 }
