@@ -86,13 +86,38 @@ html, body {
 	height: 25px;
 }
 
+.caixa_texto_customizado_1 {
+	background-color: white;
+	border: #4a4d4f;
+	border-style: solid;
+
+	border-radius: 5px;
+
+	width: 137px;
+	height: 25px;
+}
+
+.caixa_texto_customizado_2 {
+	background-color: white;
+	border: #4a4d4f;
+	border-style: solid;
+
+	border-radius: 5px;
+
+	text-align: center;
+
+	width: 20px;
+	height: 25px;
+}
+
 .botao {
 	width: 180px;
 	height: 30px;
-	transition: all 0.4s;
+	transition: all 0.2s;
 }
 .botao:hover {
-	background-color: #3d4042;
+	background-color: #595154;
+	/*transform: scale(1.05);*/
 	cursor: pointer;
 }
 
@@ -100,6 +125,12 @@ html, body {
 	text-align: center;
 	width: 180px;
 	height: 30px;
+}
+
+.texto_versao {
+	text-align: center;
+	color: #606060;
+	float: right;
 }
 
 /*

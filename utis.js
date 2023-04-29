@@ -7,20 +7,20 @@
 
 function imprimir ()
 {
-	const c = document.getElementById("canvas");
-	const dataUrl = c.toDataURL("png");
+	const canvas = document.getElementById("canvas");
+	const dataUrl = canvas.toDataURL("png");
 
 	const imagem = new Image();
 	imagem.src = dataUrl;
 
-	const j = window.open("imagem", '_blank');
-	j.document.write(imagem.outerHTML);
+	const janela = window.open("imagem", '_blank');
+	janela.document.write(imagem.outerHTML);
 
-	setTimeout(() => {
-
-		j.focus();
-		j.print();
-		j.close();
+	setTimeout(() =>
+	{
+		janela.focus();
+		janela.print();
+		janela.close();
 	}, 250);
 }
 
@@ -31,7 +31,7 @@ function salvar_imagem ()
 	const link = document.createElement("a");
 	const l = opcao_loja();
 
-	link.download = `${l.pegarNome().toLowerCase()}.png`;
+	link.download = `${l.pegarNome().toLowerCase()}_${data_formatada().replaceAll("/","")}.png`;
 	link.href = c.toDataURL();
 	link.click();
 
@@ -69,7 +69,7 @@ function formatar_numero (n = Number(0))
 		return n;
 	}
 
-	return '0' + n;
+	return String('0' + n);
 }
 
 /*

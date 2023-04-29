@@ -8,20 +8,26 @@ function desenhar_canvas ()
 	const link = "https://raw.githubusercontent.com/GIOdeBrito/PlacaEnvio/main/recursos/modelo.png";
 	var dados = opcao_loja();
 
-	var t = definir_vetor_texto(dados);
+	if(dados.pegarNumero() == "99")
+	{
+		let nome = document.getElementById("custom_destino").value;
+		let num = document.getElementById("custom_num").value;
+		dados = new Loja(nome,num);
+	}
 
+	var texto = definir_vetor_texto(dados);
 	var img = new Image();
+
 	img.crossOrigin = "anonymous";
 	img.src = link;
-	img.onload = () => {
-
+	img.onload = () =>
+	{
 		ctx.drawImage(img, 0,0, c.width,c.height);
 
-		t.forEach((item, i) => {
-
+		texto.forEach((item, i) =>
+		{
 			ctx.font = item.fonte;
 			ctx.textAlign = item.alinhamento;
-
 			ctx.fillText(item.texto, item.Posicao().x,item.Posicao().y);
 		});
 	};
@@ -29,54 +35,68 @@ function desenhar_canvas ()
 
 function definir_vetor_texto (dados)
 {
-	var chamado = document.getElementById("chamado");
-	var desc = document.getElementById("desc");
-	var pessoa = document.getElementById("pessoa");
+	const chamado = document.getElementById("chamado");
+	const desc = document.getElementById("desc");
+	const pessoa = document.getElementById("pessoa");
 	const cLargura = document.getElementById("canvas").width / 2;
 
-	var t = new Array(
+	const func_def_pos = (num) =>
+	{
+		let y = textos_linha[textos_linha.length-1].Posicao().y + num;
+		return y;
+	};
+	const func_valor_chamado = (valor) =>
+	{
+		if(valor)
+		{
+			return String(`#${valor}`);
+		}
+
+		return valor;
+	};
+
+	var textos_linha = new Array(
 		new Texto(`PARA: ${dados.pegarNome()}`, new Vetor2(160,280)),
 		new Texto(`${dados.pegarNumero()}`, new Vetor2(1850,280)),
-		new Texto(`#${chamado.value}`, new Vetor2(160,405), "left", "70"),
+		new Texto(`${func_valor_chamado(chamado.value)}`, new Vetor2(160,405), "left", "70"),
 	);
-
 	var quebrasl = picotar_str(desc.value);
 	var posY = 0;
 
 	for(let i = 0; i < quebrasl.length; i++)
 	{
-		t.push(new Texto(`${quebrasl[i]}`, new Vetor2(160,741 + posY), "left", "110"));
+		textos_linha.push(new Texto(`${quebrasl[i]}`, new Vetor2(160,741 + posY), "left", "110"));
 		posY += 115;
 	}
 
-	// Destinatário
-	let destinatarioPosY = t[t.length-1].Posicao().y + 125;
-	t.push(new Texto(`DE: ${pessoa.value} - T.I`, new Vetor2(160,destinatarioPosY)));
+	// Remetente
+	textos_linha.push(new Texto(`DE: ${pessoa.value} - T.I`,new Vetor2(160,func_def_pos(125))));
 
 	// Frágil
-	let fragilPosY = t[t.length-1].Posicao().y + 150;
-	t.push(new Texto(`FRÁGIL`, new Vetor2(cLargura,fragilPosY), "center"));
+	textos_linha.push(new Texto(`FRÁGIL`,new Vetor2(cLargura,func_def_pos(150)),"center"));
 
 	// Data de envio
-	let dataPosY = t[t.length-1].Posicao().y + 150;
-	t.push(new Texto(`DATA: ${data_formatada()}`, new Vetor2(cLargura,dataPosY), "center"));
+	textos_linha.push(new Texto(`DATA: ${data_formatada()}`,new Vetor2(cLargura,func_def_pos(150)),"center"));
 
-	return t;
+	return textos_linha;
 }
 
-function Texto (t, v = new Vetor2(0,0), a = "left", f = "120") {
-
+function Texto (t, v = new Vetor2(0,0), a = "left", f = "120")
+{
 	this.texto = t;
 	this.fonte = `bold ${f}px Liberation Serif`;
 	this.alinhamento = a;
+
 	var pos = v;
 
-	this.Posicao = () => {
+	this.Posicao = () =>
+	{
 		return pos;
 	};
 }
 
-function Vetor2 (x, y) {
+function Vetor2 (x, y)
+{
 	this.x = x;
 	this.y = y;
 }
