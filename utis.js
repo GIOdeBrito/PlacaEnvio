@@ -8,26 +8,48 @@
 function imprimir ()
 {
 	const canvas = document.getElementById("canvas");
-	const dataUrl = canvas.toDataURL("png");
+	const dataUrl = canvas.toDataURL("jpg");
+
+	//const dimensoes = new Vetor2(1024,720);
 
 	const imagem = new Image();
 	imagem.src = dataUrl;
 
-	const janela = window.open("imagem", '_blank');
+	/*const neo_canvas = document.createElement("canvas");
+	const neo_ctx = neo_canvas.getContext("2d");
+	neo_canvas.width = dimensoes.x;
+	neo_canvas.height = dimensoes.y;
+	neo_canvas.setAttribute("id","canvas-invisivel");
+
+	document.body.appendChild(neo_canvas);
+
+	const urlFinal = neo_canvas.toDataURL("jpg");
+
+	const imagem_final = new Image();
+	imagem_final.src = urlFinal;
+	imagem_final.onload = () =>
+	{
+		neo_ctx.drawImage(imagem, 0,0, dimensoes.x,dimensoes.y);
+
+		const janela = window.open(imagem_final, '_blank');
+		janela.document.write(imagem_final.outerHTML);
+	};*/
+
+	const janela = window.open(imagem, '_blank');
 	janela.document.write(imagem.outerHTML);
 
-	setTimeout(() =>
+	janela.document.window.onload = () =>
 	{
 		janela.focus();
 		janela.print();
 		janela.close();
-	}, 250);
+	};
 }
 
 function salvar_imagem ()
 {
 	const c = document.getElementById("canvas");
-	const dataUrl = c.toDataURL("png");
+	const dataUrl = c.toDataURL("jpg");
 	const link = document.createElement("a");
 	const l = opcao_loja();
 
@@ -49,8 +71,8 @@ function data_formatada ()
 	const __d = new Date().toLocaleString("en-US",{timeZone:"America/Fortaleza"});
 	const d = new Date(__d);
 
-	var dia = d.getDate();
-	var mes = formatar_numero(d.getMonth() + 1);
+	var dia = numero_data(d.getDate());
+	var mes = numero_data(d.getMonth() + 1);
 	var ano = d.getFullYear();
 
 	return `${dia}/${mes}/${ano}`;
@@ -62,7 +84,7 @@ function picotar_str (str = String(""))
 	return arr;
 }
 
-function formatar_numero (n = Number(0))
+function numero_data (n = Number(0))
 {
 	if(n > 9)
 	{

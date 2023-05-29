@@ -57,9 +57,12 @@ html, body {
 	/*! margin-top: 0 auto; */
 
 	list-style-type: none;
+
+	pointer-events: none;
 }
 .lista_dados li {
 	margin: 6px;
+	pointer-events: all;
 }
 
 /*
@@ -148,6 +151,23 @@ html, body {
 
 	border-style: solid;
 	box-shadow: 0px 0px 10px #000;
+
+	cursor: pointer;
+
+	transform: scale(1);
+
+	animation-duration: 0.32s;
+	animation-fill-mode: forwards;
+	transition: transform 0.65s;
+}
+#canvas:hover {
+	animation-name: expandir;
+}
+
+#canvas-invisivel {
+	width: 100%;
+	height: 100%;
+	display: none;
 }
 
 /*
@@ -173,7 +193,7 @@ html, body {
 		visibility: collapse;
 	}
 
-	.janela_0,.janela_1 {
+	.janela_0, .janela_1 {
 		width: 100%;
 		width: 100%;
 		top: 0%;
@@ -186,11 +206,26 @@ html, body {
 
 /*
 ================================================================================
-	OUTROS
+	ANIMAÇÕES
+================================================================================
+*/
+
+@keyframes expandir {
+	from {
+		transform: scale(1);
+	}
+	to {
+		transform: scale(1.03);
+	}
+}
+
+/*
+================================================================================
+	FONTES
 ================================================================================
 */
 
 @font-face {
 	font-family: mspace;
-	src: url("./recursos/fontes/monospace.otf");
+	src: url("./fontes/monospace.otf");
 }

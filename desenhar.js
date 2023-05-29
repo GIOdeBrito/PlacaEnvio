@@ -5,7 +5,7 @@ function desenhar_canvas ()
 	var ctx = c.getContext("2d");
 
 	//var link = "https://upload.wikimedia.org/wikipedia/pt/5/57/Doom_cover_art.jpg";
-	const link = "https://raw.githubusercontent.com/GIOdeBrito/PlacaEnvio/main/recursos/modelo.png";
+	const link = "https://raw.githubusercontent.com/GIOdeBrito/PlacaEnvio/main/modelo/modelo.png";
 	var dados = opcao_loja();
 
 	if(dados.pegarNumero() == "99")
@@ -38,7 +38,7 @@ function definir_vetor_texto (dados)
 	const chamado = document.getElementById("chamado");
 	const desc = document.getElementById("desc");
 	const pessoa = document.getElementById("pessoa");
-	const cLargura = document.getElementById("canvas").width / 2;
+	const cLargura = parseFloat(document.getElementById("canvas").width / 2);
 
 	const func_def_pos = (num) =>
 	{
