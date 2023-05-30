@@ -35,15 +35,15 @@ function imprimir ()
 		janela.document.write(imagem_final.outerHTML);
 	};*/
 
-	const janela = window.open(imagem, '_blank');
+	const janela = window.open("img", '_blank');
 	janela.document.write(imagem.outerHTML);
 
-	janela.document.window.onload = () =>
+	setTimeout(() =>
 	{
 		janela.focus();
 		janela.print();
 		janela.close();
-	};
+	}, 250);
 }
 
 function salvar_imagem ()

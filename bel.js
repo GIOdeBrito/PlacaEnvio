@@ -49,6 +49,7 @@ function controles ()
 	document.getElementById('imp').onclick = () => { imprimir(); };
 	document.getElementById('adi').onclick = () => { adicionar_item(); };
 	document.getElementById('salvar').onclick = () => { salvar_imagem(); };
+	document.getElementById('canvas').onclick = () => { salvar_imagem(); };
 }
 
 function revelar_barras_customizadas (__tipo = "")
